@@ -511,9 +511,17 @@
 
                             var rev_prof = $('.dphpforms-record').find('.revisado_profesional').find('.checkbox').find('input[type=checkbox]').prop('checked');
                             var rev_prac = $('.dphpforms-record').find('.revisado_practicante').find('.checkbox').find('input[type=checkbox]').prop('checked');
+                            var role_support = $('#dphpforms_role_support').attr('data-info');
                             
-                            if(rev_prof || rev_prac){
+                            if( (rev_prof || rev_prac) && ( role_support != "sistemas" )){
                                 $('.dphpforms-record').find('.btn-dphpforms-delete-record').remove();
+                                if(rev_prof){
+                                    $('.dphpforms-record').find('.btn-dphpforms-update').remove();
+                                }                               
+                            }
+
+                            if (role_support != "practicante_pr"){
+                                $('.dphpforms-record').find('.revisado_profesional').prop('disabled', true);
                             }
 
                             var behaviors = JSON.parse($('#permissions_information').text());
